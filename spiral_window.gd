@@ -22,9 +22,11 @@ func _on_audio_stream_player_finished() -> void:
 func _locate_clips_and_play() -> void:
 	# try to get a list of all the clips in the puppy_clips
 	var clips : Array = DirAccess.get_files_at("./puppy_clips/")
+	# filter the clips
 	clips = clips.filter(_filter_files_for_audio_types)
-	print(clips)
+	# pick a random clip
 	var clip_to_load = clips.pick_random()
+	# import and play the clip
 	if clip_to_load.ends_with(".wav"):
 		audio_stream_player.stream = AudioStreamWAV.load_from_file("./puppy_clips/"+clip_to_load)
 	if clip_to_load.ends_with(".mp3"):
@@ -33,7 +35,9 @@ func _locate_clips_and_play() -> void:
 			audio_stream_player.stream = AudioStreamOggVorbis.load_from_file("./puppy_clips/"+clip_to_load)
 	audio_stream_player.play()
 
+## this is specifically to filter the file list down to only supported audio files
 func _filter_files_for_audio_types(file:String):
+	# gets the last 4 characters for the match
 	match file.substr(file.length()-4):
 		".wav", ".mp3", ".ogg":
 			return file

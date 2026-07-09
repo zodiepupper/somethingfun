@@ -50,5 +50,7 @@ func _process(delta: float) -> void:
 		# if it is time to attack, then we attack!!
 		# start by creating a new instance of the spiral window
 		var tmp_window : SpiralWindow = SPIRAL_WINDOW.instantiate()
+		# release the button to reset TODO: add an option to loop 
 		button.button_pressed = false
+		# add the window to the tree
 		add_child(tmp_window)
