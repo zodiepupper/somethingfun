@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bbnhtimi2s0t1"]
+
+[ext_resource type="Shader" uid="uid://cwd3iptno1mn2" path="res://spiral.gdshader" id="1_evqlj"]
+[ext_resource type="Script" uid="uid://c8xw7j6mve31p" path="res://spiral.gd" id="2_cuh7e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mlals"]
+shader = ExtResource("1_evqlj")
+shader_parameter/resolution = Vector2(600, 400)
+shader_parameter/spiral_color = Color(0.5790973, 0.16836104, 0.4305542, 1)
+shader_parameter/frequency = 3.60000003874312
+shader_parameter/speed = 1.0
+shader_parameter/brightness = 1.0
+shader_parameter/balance = 0.0
+shader_parameter/octaves = 3.0
+
+[sub_resource type="Animation" id="Animation_h2yge"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/spiral_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.5790973, 0.16836104, 0.4305542, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0xm2m"]
+resource_name = "new_animation"
+length = 9.0
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/spiral_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0.015686275, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h2yge"]
+_data = {
+&"RESET": SubResource("Animation_h2yge"),
+&"new_animation": SubResource("Animation_0xm2m")
+}
+
+[node name="ColorRect" type="ColorRect" unique_id=800184052]
+material = SubResource("ShaderMaterial_mlals")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.755, 1.755)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("2_cuh7e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1111604472]
+libraries/ = SubResource("AnimationLibrary_h2yge")

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cmcc2s4qam082"]
+
+[ext_resource type="Script" uid="uid://blf7eybonlo3g" path="res://spiral_window.gd" id="1_c2fsk"]
+[ext_resource type="PackedScene" uid="uid://bbnhtimi2s0t1" path="res://spiral.tscn" id="1_edh6y"]
+
+[node name="SpiralWindow" type="Window" unique_id=414813600]
+oversampling_override = 1.0
+mode = 4
+initial_position = 1
+script = ExtResource("1_c2fsk")
+
+[node name="ColorRect" parent="." unique_id=800184052 instance=ExtResource("1_edh6y")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1196123584]
+volume_db = -14.066
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
