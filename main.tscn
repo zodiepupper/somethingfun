@@ -20,6 +20,13 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=647293523]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "the app looks for a folder in the same directory called \"puppy_clips\". anything you put in there (mp3, wav, ogg) will be added to the random playlist"
+autowrap_mode = 3
+
 [node name="Button" type="Button" parent="VBoxContainer" unique_id=46921703]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -54,6 +61,17 @@ unique_name_in_owner = true
 layout_mode = 2
 value = 5.0
 allow_greater = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2053896797]
+z_index = -5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [connection signal="toggled" from="VBoxContainer/Button" to="." method="_on_button_toggled"]
 [connection signal="value_changed" from="VBoxContainer/HBoxContainer2/max" to="." method="_on_max_value_changed"]
